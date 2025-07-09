@@ -65,6 +65,10 @@ Bun.serve({
 
   routes: {
     "/": {
+      async GET() {
+        return Response.json({ message: "sup dawg" });
+      },
+
       async POST(req) {
         try {
           const { text } = (await req.json()) as { text: string };
