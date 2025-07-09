@@ -55,6 +55,8 @@ async function analyzeFoods(text: string) {
     ],
   });
 
+  console.log({ response });
+
   return response?.choices[0]?.message?.parsed ?? null;
 }
 
@@ -82,7 +84,9 @@ Bun.serve({
 
           console.log({ text });
 
+          console.time("llm");
           const result = await analyzeFoods(text);
+          console.timeEnd("llm");
 
           if (!result) {
             return Response.json(
